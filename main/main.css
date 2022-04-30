@@ -1,0 +1,33 @@
+
+body {
+    font-size: 14px;
+    background-color: white;  
+}
+head{
+  background-color: white;
+}
+.row {
+    display: flex;
+    text-align: center;
+    background-color: white; 
+}
+
+.column {
+    text-align:center;
+    background-color: white; 
+    flex: 50%;
+    
+}
+/* #myChart{
+    position: absolute;
+  right: 500px;
+} */
+#icon{
+    position: absolute;
+  left: 125px;
+}
+
+#butt{
+  position: absolute;
+  right: 125px;
+}
