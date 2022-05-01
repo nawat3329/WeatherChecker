@@ -1,16 +1,16 @@
-
-
-head{
-  background-color: white;
+head {
+    background-color: white;
 }
+
 .row {
     display: flex;
-    background-color: white; 
+    background-color: white;
 }
 
 .column {
-    background-color: white; 
+    background-color: white;
     flex: 50%;
+
 }
 
 /* weather weekly card css*/
@@ -56,6 +56,12 @@ head{
     background-image: linear-gradient(to left bottom, #d6eef6, #dff0fa, #e7f3fc, #eff6fe, #f6f9ff)
 }
 
+.mr-auto {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 .card {
     position: relative;
     display: flex;
@@ -69,17 +75,16 @@ head{
 }
 
 .card-weather .card-body:first-child {
-    background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center;
-    background-size: cover
+    background: url(https://images.pexels.com/photos/907485/pexels-photo-907485.jpeg?cs=srgb&dl=pexels-ithalu-dominguez-907485.jpg&fm=jpg) no-repeat center;
+    background-size: cover;
+    opacity: 0.9;
 }
 
-.card .card-body {
-    padding: 1.88rem 1.81rem
-}
+.card .card-body {}
 
 .card-body {
     flex: 1 1 auto;
-    padding: 1.25rem
+
 }
 
 .card-weather .weather-date-location {
@@ -117,15 +122,51 @@ p {
     font-size: 13px
 }
 
+/*adding--------------------------------------------------------- */
+.text-gray {
+    text-align: center;
+    font-weight: bold;
+}
+
+h3 {
+    text-align: center;
+}
+
+.text-black {
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.text-black-50 {
+    text-align: center;
+    font-weight: bold;
+}
+
+#cl01 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+#cl02 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/*adding--------------------------------------------------------- */
 .text-gray,
 .card-subtitle,
 .new-accounts ul.chats li.chat-persons a p.joined-date {
     color: #969696
 }
 
-.card-weather .weather-data {
-    padding: 0 0 4.75rem
-}
+.card-weather .weather-data {}
 
 .mr-auto,
 .mx-auto {
@@ -160,26 +201,31 @@ p {
 .card-weather .weakly-weather .weakly-weather-item i {
     font-size: 1.2rem
 }
-/* end weather weekly */
-/* login css*/ 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #17a2b8;
-  height: 100vh;
-}
-#login .container #login-row #login-column #login-box {
-  margin-top: 120px;
-  max-width: 600px;
-  height: 320px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
-}
-#login .container #login-row #login-column #login-box #login-form {
-  padding: 20px;
-}
-#login .container #login-row #login-column #login-box #login-form #register-link {
-  margin-top: -85px;
-}
-/* end login */ 
 
+/* end weather weekly */
+
+/* login css*/
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #17a2b8;
+    height: 100vh;
+}
+
+#login .container #login-row #login-column #login-box {
+    margin-top: 120px;
+    max-width: 600px;
+    height: 320px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+}
+
+/* end login */

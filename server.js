@@ -1,12 +1,89 @@
 var express = require("express")
-var app = express();
-var bcrypt = require('bcrypt')
+/* var bcrypt = require('bcrypt')
 var passport = require('passport')
 var flash = require('express-flash')
 var session = require('express-session')
 var methodOverride = require('method-override')
+ */
+const mongoose = require('mongoose');
+const User = require('./models/user');
+var app = express()
 
-const initializePassport = require('/passport-config')
+//connect to mongodb
+const dbURI = 'mongodb+srv://admin:A395UNE4fFE6mnJ2@des422-mongodb.7jcr1.mongodb.net/DES422-MongoDB?retryWrites=true&w=majority'
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then((result) => app.listen(3000))
+    .catch((err) => console.log(err));
+
+
+app.use(express.static('public'))
+app.use('/css', express.static(__dirname + 'public/css'))
+app.use('/javascript', express.static(__dirname + 'public/javascript'))
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+// insert user
+app.get('/main', (req, res) =>{
+    res.render('index')
+});
+
+app.get('/add-user', (req, res) =>{
+    const user = new User({
+        name:'Jack Sparrow',
+        email:'Jack@gmail.com',
+        username:'jack',
+        password:'1234'
+    });
+
+    user.save()
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+});
+
+// show all users
+app.get('/all-users',(req, res)=>{
+    User.find()
+    .then((result)=>{
+        res.send(result);
+    })
+    .catch((err)=>{
+        conslotchange.log(err);
+    });
+})
+// show user
+app.get('/single-user',(req, res)=>{
+    User.find({username:'jack'})
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        conslotchange.log(err);
+    });
+})
+
+
+app.get('/setting', (req, res)=>{
+    res.redirect('/users');
+});
+
+app.get('/users', (req, res)=>{
+    User.find()
+    .then((result)=>{
+        
+        res.render('setting', {users: result})
+    })
+    .catch((err) =>{
+        console.log(err);
+    })
+})
+
+/* const initializePassport = require('/passport-config')
 initializePassport(
     passport, 
     username => users.find(user => user.username === username),
@@ -15,7 +92,7 @@ initializePassport(
 
 const users = [] // < ------------------------------------------------------------------- change to database
 
-app.set('view-engine', 'html')
+
 app.use(express.urlencoded({extended: false}))
 app.use(flash())
 app.use(session({
@@ -80,5 +157,4 @@ function checkNotAuthenticated(req, res, next){
     }
     next()
 }
-
-app.listen(3000)
+*/

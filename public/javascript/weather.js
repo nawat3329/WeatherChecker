@@ -1,3 +1,5 @@
+
+
 api_key = '813eeecd2f39020f2a5e609f5f1731f7';
 function findLocation(geolocation){
     $.ajax({
@@ -16,7 +18,7 @@ function findLocation(geolocation){
                 alert("Unknown Location")
             }
             else{
-            getCurrentWeather(response[0].lat,response[0].lon);
+                callWeather(response[0].lat,response[0].lon);
             }
         },
         error: function (response) {
@@ -33,7 +35,7 @@ function getCurrentLocation(){
         //try to get user current location using getCurrentPosition() method
         navigator.geolocation.getCurrentPosition(function(position){ 
                 console.log("Found your location \nLat : "+position.coords.latitude+" \nLang :"+ position.coords.longitude);
-                getCurrentWeather(position.coords.latitude,position.coords.longitude);
+                callWeather(position.coords.latitude,position.coords.longitude);
             });
     }else{
         console.log("Browser doesn't support geolocation!");
@@ -59,7 +61,7 @@ function getCurrentWeather(lat,lon){
             '                                    <div class="card-body p-4">' + 
             '                                        <div class="d-flex">' + 
             '                                            <h6 class="flex-grow-1">'+ response.name +'</h6><!-- city -->' + 
-            '                                            <h6>'+ new Date().toString("HH:mm")+'</h6><!-- time -->' + 
+            '                                            <h6>'+ moment().format("D MMM")+'</h6><!-- time -->' + 
             '                                        </div>' + 
             '                                        <div class="d-flex flex-column text-center mt-5 mb-4">' + 
             '                                            <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> '+ response.main.temp + '°C' + 
@@ -95,7 +97,86 @@ function getCurrentWeather(lat,lon){
         },
     });
 }
-
+function getPredictionWeather(lat,lon){
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: 'https://api.openweathermap.org/data/2.5/onecall',
+        data: { 
+            lat: lat,
+            lon: lon,
+            units: "metric",
+            appid : api_key
+        },
+        success: function (response) {
+            console.log('response: ', response);
+            var weeklyitem = ''
+            for (let i=0;i<Object.keys(response.daily).length; i++){
+                weeklyitem += 
+                '            <div class="weakly-weather-item">' + 
+                '               <p class="mb-0">'+(moment.unix(response.daily[i].dt)).format("ddd")+
+                '               <img src="http://openweathermap.org/img/wn/'+response.daily[i].weather[0].icon+'@2x.png" width="50px"> ' + 
+                '               <p class="mb-0"> '+ Math.round(response.daily[i].temp.eve) +' °C </p>' + 
+                '            </div>'
+            }
+            var sunset = moment.unix(response.current.sunset)
+            var sunrise = moment.unix(response.current.sunrise)
+            var card = '' + 
+'                                   <div class="card card-weather">' + 
+'                                        <div class="card-body">' + 
+'                                            <div class="weather-date-location">' + 
+'                                                <h3>'+ moment().format("dddd")+'</h3>' + 
+'                                                <p class="text-black-50">' + 
+'                                                    <span class="weather-date">'+moment().format("D MMMM YYYY")+'</span>' + 
+'                                                    <span class="weather-location">'+ +'</span>' + 
+'                                                </p>' + 
+'                                            </div>' + 
+'                                            <div class="row">' + 
+'                                                <div class="column" id="cl01">' + 
+'                                                    <div class="weather-data d-flex">' + 
+'                                                        <div class="mr-auto">' + 
+'                                                            <h4 class="display-3">'+  Math.round(response.current.temp) +' <span class="symbol">°</span>C</h4>' + 
+'                                                            <p> '+ response.current.weather[0].main +' </p>' + 
+'                                                        </div>' + 
+'                                                    </div>' + 
+'                                                </div>' + 
+'                                                <div class="column" id="cl02">' + 
+'                                                    <p class="text-black">' + 
+'                                                        <span>Feel like: '+ response.current.feels_like+'°C</span>' + 
+'                                                    </p>' + 
+'                                                    <p class="text-black">' + 
+'                                                        <span>UVI: '+ response.current.uvi +'</span>' + 
+'                                                    </p>' + 
+'                                                    <p class="text-black">' + 
+'                                                        <span>Sunrise: '+ sunrise.format("HH:mm") +'</span>' + 
+'                                                    </p>' + 
+'                                                    <p class="text-black">' + 
+'                                                        <span>Sunset: '+ sunset.format("HH:mm") +'</span>' + 
+'                                                    </p>' + 
+'                                                </div>' + 
+'                                            </div>' + 
+'                                        </div>' + 
+'                                        <!-- lower path -->' + 
+'                                        <div class="card-body p-0">' + 
+'                                            <div class="d-flex weakly-weather">' + 
+                                                    weeklyitem +
+'                                                </div>' + 
+'                                            </div>' + 
+'                                        </div>' + 
+'                                    </div>' + 
+'';
+            $("#carddeck2").append(card);
+        },
+        error: function (response) {
+            console.log('response: ', response);
+            return "error";
+        },
+    });
+}
+function callWeather(lat,lon){
+    getCurrentWeather(lat,lon)
+    getPredictionWeather(lat,lon)
+}
 function main() {
     
     

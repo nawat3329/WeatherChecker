@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Setting</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <style>
+    html,
+    body {
+      height: 50%;
+    }
+
+    body,
+    h1,
+    h3,
+    input {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #17a2b8;
+    }
+
+    h1,
+    h3 {
+      padding: 12px 0;
+      font-weight: 400;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    .main-block,
+    .info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-block {
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 100%;
+      background-color: white;
+    }
+
+    form {
+      width: 50%;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: solid 1px #ccc;
+      box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+      background: #ebebeb;
+    }
+
+    .info-item {
+      width: 100%;
+    }
+
+    input {
+      width: calc(100% - 57px);
+      height: 36px;
+      padding-left: 10px;
+      margin: 0 0 12px -5px;
+      border-radius: 0 5px 5px 0;
+      border: solid 1px #cbc9c9;
+      box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+      background: #fff;
+    }
+
+    .icon {
+      padding: 9px 15px;
+      margin-top: -1px;
+      border-radius: 5px 0 0 5px;
+      border: solid 0px #cbc9c9;
+      background: #17a2b8;
+      color: #fff;
+    }
+
+    textarea {
+      width: 99%;
+      margin-bottom: 12px;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      background: #17a2b8;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    button:hover {
+      background: #17a2b8;
+    }
+
+    .grade-type div {
+      display: flex;
+      margin: 6px 0;
+    }
+
+    @media (min-width: 568px) {
+      .info {
+        flex-flow: row wrap;
+        justify-content: space-between;
+      }
+
+      .info-item {
+        width: 48%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-block">
+    <h1>Setting</h1>
+    <form action="/setting" method="post">
+      <h3>Profile</h3>
+      <div class="info">
+        <div class="info-item">
+          <label class="icon" for="name"><i class="fas fa-user"></i></label> <!--Not connect with DB yet-->
+          <input type="text" name="name" id="name" placeholder="<%= users[0].name %>"  disabled /><!--name-->
+        </div>
+        <div class="info-item">
+          <label class="icon" for="email"><i class="fas fa-envelope"></i></label>
+          <input type="text" name="email" id="email" placeholder="<%= users[0].email %>" disabled /><!--email-->
+        </div>
+        <div class="info-item">
+          <label class="icon" for="username"><i class="fa-regular fa-user-check"></i></label>
+          <input type="text" name="username" id="username" placeholder="<%= users[0].username %>"" disabled /><!--usernsme-->
+        </div>
+        <div class="info-item">
+          <label class="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
+          <input type="text" name="password" id="password" placeholder=<%= users[0].password %> disabled /><!--password-->
+        </div>
+      </div>
+      <hr>
+      <div class="checkbox">
+        <label for="vehicle1"> checkbox1 </label>
+        <input type="checkbox" id="checkbox1" name="checkbox1" value="1"><!--checkbox1-->
+        <label for="vehicle1"> checkbox2 </label>
+        <input type="checkbox" id="checkbox2" name="checkbox2" value="1"><!--checkbox2-->
+        <label for="vehicle1"> checkbox3 </label>
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="1"><!--checkbox3-->
+
+      </div>
+      <!-- <h3>Please Comment</h3>
+        <textarea rows="4"></textarea> -->
+      <button type="submit" href="/main">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>
