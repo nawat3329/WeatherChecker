@@ -1,7 +1,7 @@
 
 
-api_key = '813eeecd2f39020f2a5e609f5f1731f7';
-function findLocation(geolocation){
+//api_key = '813eeecd2f39020f2a5e609f5f1731f7';
+function findLocation(geolocation,api_key){
     $.ajax({
         type: 'GET',
         dataType: "json",
@@ -18,7 +18,7 @@ function findLocation(geolocation){
                 alert("Unknown Location")
             }
             else{
-                callWeather(response[0].lat,response[0].lon);
+                callWeather(response[0].lat,response[0].lon,api_key);
             }
         },
         error: function (response) {
@@ -30,19 +30,19 @@ function findLocation(geolocation){
     
 
 }
-function getCurrentLocation(){
+function getCurrentLocation(api_key){
     if ("geolocation" in navigator){ //check geolocation available 
         //try to get user current location using getCurrentPosition() method
         navigator.geolocation.getCurrentPosition(function(position){ 
                 console.log("Found your location \nLat : "+position.coords.latitude+" \nLang :"+ position.coords.longitude);
-                callWeather(position.coords.latitude,position.coords.longitude);
+                callWeather(position.coords.latitude,position.coords.longitude,api_key);
             });
     }else{
         console.log("Browser doesn't support geolocation!");
     }
 }
 
-function getCurrentWeather(lat,lon){
+function getCurrentWeather(lat,lon,api_key){
     $.ajax({
         type: 'GET',
         dataType: "json",
@@ -97,7 +97,7 @@ function getCurrentWeather(lat,lon){
         },
     });
 }
-function getPredictionWeather(lat,lon){
+function getPredictionWeather(lat,lon,api_key){
     $.ajax({
         type: 'GET',
         dataType: "json",
@@ -173,21 +173,43 @@ function getPredictionWeather(lat,lon){
         },
     });
 }
-function callWeather(lat,lon){
-    getCurrentWeather(lat,lon)
-    getPredictionWeather(lat,lon)
+function callWeather(lat,lon,api_key){
+    getCurrentWeather(lat,lon,api_key)
+    getPredictionWeather(lat,lon,api_key)
 }
-function main() {
-    
-    
-    $("#search").click(function () {
+
+async function callAPI(){
+    const response = await fetch("/api");
+    var data = await response.json();
+    api_key = data.api
+    if (api_key === undefined){
+        $("#searchbutton").prop("disable", true);
+        $("#CurrentLocation").prop("disable", true);
+        console.log("api not found")
+        
+    }
+    else{
+        console.log("api found!")
+        $("#api_warning").hide();
+        interface(api_key);
+    }
+}
+
+function interface(api_key){
+    console.log(api_key)
+    $("#searchbutton").click(function () {
         geolocation = $("#geolocation").val();
         console.log(geolocation)
-        findLocation(geolocation);
+        findLocation(geolocation,api_key);
     })
     $("#CurrentLocation").click(function () {
-    getCurrentLocation();
+    getCurrentLocation(api_key);
     })
+}
+
+
+function main() {
+    callAPI()
     
 }
 $(document).ready(main);

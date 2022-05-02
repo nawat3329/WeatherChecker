@@ -22,10 +22,10 @@
     <!-- Navbar -->
     <nav class="navbar sticky-top navbar-light bg-light" style="background-color: #17a2b8">
         <div class="container">
-            <a class="navbar-brand" href="#">WeatherChecker</a> <!-- Not linked yet-->
+            <a class="navbar-brand" href="/">WeatherChecker</a> <!-- Not linked yet-->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">User Profile</a><!-- Not linked yet-->
+                    <a class="nav-link" href="/users">User Profile</a><!-- Not linked yet-->
                     <a class="nav-link" id="CurrentLocation" href="#">Current Location</a><!-- Not linked yet-->
                 </li>
             </ul>
@@ -33,9 +33,12 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search Location" aria-label="Search"
                     id="geolocation">
                 <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark"
-                    id="search">Search</button>
+                    id="searchbutton">Search</button>
             </form>
         </div>
+        <form action="/logout" method="get">
+            <button type="submit">Log Out</button>
+        </form>
     </nav>
     <!-- Navbar -->
 
@@ -44,7 +47,37 @@
             <!-- empty navbar -->
         </nav>
     </div>
-
+<!--Alert Popup-->
+<div class="container" id='api_warning'>
+    <div class="row no-gutters">
+        <div class="col-lg-6 col-md-12">
+            <div class="alert-danger shadow my-3" role="alert" style="border-radius: 0px">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="text-center" style="background:#721C24">
+                            <svg width="3em" height="3em" style="color:#F8D7DA" viewBox="0 0 16 16"
+                                class="m-1 bi bi-exclamation-circle-fill" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="alert col-10 my-auto">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="True" style="color:#721C24">&times;</span>
+                        </button>
+                        <div class="row">
+                            <p style="font-size:18px" class="mb-0 font-weight-light"><b class="mr-1">Alert! </b>You do not have OpenWeather 
+                                api. Please check User Profile</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end alert popup-->
     <!-- weather card 1 -->
     <div id="weathercard">
         <div class="row " id="sortable">
@@ -69,7 +102,7 @@
                     <div class="page-content page-container" id="page-content">
                         <div class="padding">
                             <div class="row container d-flex justify-content-center" id="carddeck2">
-                                
+
 
                             </div>
                         </div>

@@ -72,7 +72,7 @@
       box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
       background: #fff;
     }
-
+    
     .icon {
       padding: 9px 15px;
       margin-top: -1px;
@@ -119,42 +119,69 @@
     }
   </style>
 </head>
+
 <body>
   <div class="main-block">
     <h1>Setting</h1>
-    <form action="/setting" method="post">
+    <form action="/users" method="post">
       <h3>Profile</h3>
       <div class="info">
         <div class="info-item">
-          <label class="icon" for="name"><i class="fas fa-user"></i></label> <!--Not connect with DB yet-->
-          <input type="text" name="name" id="name" placeholder="<%= users[0].name %>"  disabled /><!--name-->
+          <label class="icon" for="name"><i class="fas fa-user"></i></label>
+          <!--Not connect with DB yet-->
+          <input type="text" name="name" id="name" placeholder="<%= users[0].name %>" disabled />
+          <!--name-->
         </div>
         <div class="info-item">
           <label class="icon" for="email"><i class="fas fa-envelope"></i></label>
-          <input type="text" name="email" id="email" placeholder="<%= users[0].email %>" disabled /><!--email-->
+          <input type="text" name="email" id="email" placeholder="<%= users[0].email %>" disabled />
+          <!--email-->
         </div>
         <div class="info-item">
           <label class="icon" for="username"><i class="fa-regular fa-user-check"></i></label>
           <input type="text" name="username" id="username" placeholder="<%= users[0].username %>"" disabled /><!--usernsme-->
         </div>
-        <div class="info-item">
+        <div class=" info-item">
           <label class="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
-          <input type="text" name="password" id="password" placeholder=<%= users[0].password %> disabled /><!--password-->
+          <input type="text" name="password" id="password" placeholder=<%=users[0].password %> disabled />
+          <!--password-->
+        </div>
+        <div class="info-item">
+          
+          <div class="input-container">
+            <span class="unit">Current API Key: </span>
+            <input type="text" style="width: 375px;" name="api" id="api" value="<%=locals.users[0].api %>" />
+          </div>
+          <!--Current API-->
+          <label class="text">
+            <p>API Key Link: </p>
+            <div id="register-link" class="text-right">
+              <a target="_blank" href="https://home.openweathermap.org/api_keys" rel="noopener noreferrer" target="_blank" class="text-info">https://home.openweathermap.org/api_keys</a>
+            </div><br>
+          </label>
+          <!--API link-->
         </div>
       </div>
       <hr>
       <div class="checkbox">
         <label for="vehicle1"> checkbox1 </label>
-        <input type="checkbox" id="checkbox1" name="checkbox1" value="1"><!--checkbox1-->
+        <input type="checkbox" id="checkbox1" name="checkbox1" value="1">
+        <!--checkbox1-->
         <label for="vehicle1"> checkbox2 </label>
-        <input type="checkbox" id="checkbox2" name="checkbox2" value="1"><!--checkbox2-->
+        <input type="checkbox" id="checkbox2" name="checkbox2" value="1">
+        <!--checkbox2-->
         <label for="vehicle1"> checkbox3 </label>
-        <input type="checkbox" id="checkbox3" name="checkbox3" value="1"><!--checkbox3-->
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="1">
+        <!--checkbox3-->
 
       </div>
       <!-- <h3>Please Comment</h3>
         <textarea rows="4"></textarea> -->
-      <button type="submit" href="/main">Submit</button>
+      <div class="row">
+        <div class="column" id="cl01"><button type="submit" href="/users">Submit</button></div>
+        <hr>
+        <div class="column" ><button type="button" onclick="history.back()" style="background-color: red;" >Back</button></div>
+      </div>
     </form>
   </div>
 </body>
