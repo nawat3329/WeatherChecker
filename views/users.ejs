@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
     integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <style>
+    /*test sidebar */
+
+    /*test sidebar end*/
     html,
     body {
       height: 50%;
@@ -72,7 +75,7 @@
       box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
       background: #fff;
     }
-    
+
     .icon {
       padding: 9px 15px;
       margin-top: -1px;
@@ -147,7 +150,7 @@
           <!--password-->
         </div>
         <div class="info-item">
-          
+
           <div class="input-container">
             <span class="unit">Current API Key: </span>
             <input type="text" style="width: 375px;" name="api" id="api" value="<%=locals.users[0].api %>" />
@@ -156,34 +159,41 @@
           <label class="text">
             <p>API Key Link: </p>
             <div id="register-link" class="text-right">
-              <a target="_blank" href="https://home.openweathermap.org/api_keys" rel="noopener noreferrer" target="_blank" class="text-info">https://home.openweathermap.org/api_keys</a>
+              <a target="_blank" href="https://home.openweathermap.org/api_keys" rel="noopener noreferrer"
+                target="_blank" class="text-info">https://home.openweathermap.org/api_keys</a>
             </div><br>
           </label>
           <!--API link-->
         </div>
       </div>
       <hr>
-      <div class="checkbox">
+      <!-- <div class="checkbox">
         <label for="vehicle1"> checkbox1 </label>
         <input type="checkbox" id="checkbox1" name="checkbox1" value="1">
-        <!--checkbox1-->
+        
         <label for="vehicle1"> checkbox2 </label>
         <input type="checkbox" id="checkbox2" name="checkbox2" value="1">
-        <!--checkbox2-->
+        
         <label for="vehicle1"> checkbox3 </label>
         <input type="checkbox" id="checkbox3" name="checkbox3" value="1">
-        <!--checkbox3-->
+        
 
-      </div>
+      </div> -->
       <!-- <h3>Please Comment</h3>
         <textarea rows="4"></textarea> -->
       <div class="row">
         <div class="column" id="cl01"><button type="submit" href="/users">Submit</button></div>
         <hr>
-        <div class="column" ><button type="button" onclick="history.back()" style="background-color: red;" >Back</button></div>
+        <div class="column"><button type="button" onclick="history.back()" style="background-color: red;">Back</button>
+        </div>
       </div>
     </form>
   </div>
+
+  <!--test side bar-->
+
+  <!--test side bar end-->
+
 </body>
 
 </html>

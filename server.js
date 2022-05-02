@@ -149,7 +149,7 @@ app.get('/users', isLoggedIn, (req, res) => {
 })
 
 app.post('/users', isLoggedIn, (req, res) => {
-    console.log(req.user.username)
+    // console.log(req.user.username)
     User.findOneAndUpdate({username: req.user.username},{api: req.body.api},{
         new: true,
         upsert: true
