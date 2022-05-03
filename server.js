@@ -8,7 +8,7 @@ const flash = require('express-flash')
 var app = express()
 
 // connect to DB
-const dbURI = 'mongodb+srv://Nawat3329:13Lovk1y01P1USPF@weatherchecker.rzztr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const dbURI = ''
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3000))
     .catch((err) => console.log(err));
